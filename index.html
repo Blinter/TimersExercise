@@ -1,0 +1,26 @@
+<script>
+    function countDown(amount) {
+        let timerID = setInterval(function() {
+            console.log(amount--);
+            if(!amount) {
+                clearInterval(timerID);
+                console.log("DONE!");
+            }
+        }, 1000);
+    }
+    countDown(4);
+
+    function randomGame() {
+        let amountofGuesses = 0;
+        let randomGameTimer = setInterval(function() {
+            let randomNumber = Math.random();
+            amountofGuesses++;
+            if(randomNumber > 0.75){
+                clearInterval(randomGameTimer);
+                console.log(`Total try/tries: ${amountofGuesses}`);
+            }
+        }, 1000);
+    }
+    randomGame();
+    
+</script>
