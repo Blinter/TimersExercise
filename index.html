@@ -3,24 +3,35 @@
         let timerID = setInterval(function() {
             console.log(amount--);
             if(!amount) {
-                clearInterval(timerID);
                 console.log("DONE!");
+                clearInterval(timerID);
             }
-        }, 1000);
+        }, 1);
     }
     countDown(4);
-
-    function randomGame() {
+    
+    function randomGame() {        
+        let countedNumbers = [];
         let amountofGuesses = 0;
         let randomGameTimer = setInterval(function() {
-            let randomNumber = Math.random();
+            let randomNumber = Math.random(0,1);
             amountofGuesses++;
-            if(randomNumber > 0.75){
-                clearInterval(randomGameTimer);
-                console.log(`Total try/tries: ${amountofGuesses}`);
+            if(!countedNumbers[randomNumber]){
+                countedNumbers[randomNumber] = 1;
+            } else {
+                countedNumbers[randomNumber++];
             }
-        }, 1000);
+            if(randomNumber>0.75){
+                console.log(`Total try/tries: ${amountofGuesses}`);
+                console.log(`- (EXTRA) Random Game Results - `);
+                for(numberIndex in countedNumbers){
+                    console.log(`${numberIndex} times picked: ${countedNumbers[numberIndex]}`);
+                }
+                console.log(`=====`);
+                console.log(`Lucky Number: ${randomNumber}`);
+                clearInterval(randomGameTimer);
+            }
+        }, 1);
     }
     randomGame();
-    
 </script>
